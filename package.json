@@ -1,0 +1,17 @@
+{
+  "name": "nodejs-simpleblogproject",
+  "version": "1.0.0",
+  "description": "NodeJs Simple Blog Project",
+  "main": "server.js",
+  "scripts": {
+    "dev": "nodemon server"
+  },
+  "author": "MR Tabriz Habiyev",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
