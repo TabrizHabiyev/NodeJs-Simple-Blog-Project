@@ -3,14 +3,12 @@ const express = require('express')
 const app = express()
 const exphbs  = require('express-handlebars')
 
-
 const port = 3000
 
 app.use(express.static('www'))
 
 app.engine('handlebars', exphbs.engine())
 app.set('view engine', 'handlebars');
-
 
 
 app.get('/', (req, res) => {
@@ -27,6 +25,14 @@ app.get('/blog', (req, res) => {
 
 app.get('/contact', (req, res) => {
   res.render('site/contact')
+})
+
+app.get('/login', (req, res) => {
+  res.render('site/login')
+})
+
+app.get('/register', (req, res) => {
+  res.render('site/register')
 })
 
 
