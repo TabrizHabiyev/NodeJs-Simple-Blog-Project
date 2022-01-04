@@ -4,6 +4,8 @@ const app = express()
 const exphbs  = require('express-handlebars')
 const bodyParser = require('body-parser')
 const fileUpload = require('express-fileupload')
+const generateDate = require('./helpers/generateDate').generateDate
+
 
 //Database MongoDB Connection
 const mongoose = require('mongoose')
@@ -15,7 +17,7 @@ const port = 3000
 
 app.use(express.static('www'))
 
-app.engine('handlebars', exphbs.engine())
+app.engine('handlebars', exphbs.engine({helpers:{generateDate:generateDate}}))
 app.set('view engine', 'handlebars');
 
 
