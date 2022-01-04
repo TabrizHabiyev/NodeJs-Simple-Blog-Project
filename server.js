@@ -2,6 +2,13 @@ const path = require('path')
 const express = require('express')
 const app = express()
 const exphbs  = require('express-handlebars')
+const bodyParser = require('body-parser')
+
+//Database MongoDB Connection
+const mongoose = require('mongoose')
+mongoose.connect('mongodb+srv://tabriz_habiyev:tabriz_habiyev@cluster0.bpd6t.mongodb.net/MongoDB?retryWrites=true&w=majority');
+
+
 
 const port = 3000
 
@@ -11,29 +18,18 @@ app.engine('handlebars', exphbs.engine())
 app.set('view engine', 'handlebars');
 
 
-app.get('/', (req, res) => {
-  res.render('site/index')
-})
 
-app.get('/about', (req, res) => {
-  res.render('site/about')
-})
 
-app.get('/blog', (req, res) => {
-  res.render('site/blog')
-})
+// create application/x-www-form-urlencoded parser
+app.use(bodyParser.urlencoded({ extended: false }))
 
-app.get('/contact', (req, res) => {
-  res.render('site/contact')
-})
+// create application/json parser
+app.use(jsonParser = bodyParser.json())
 
-app.get('/login', (req, res) => {
-  res.render('site/login')
-})
-
-app.get('/register', (req, res) => {
-  res.render('site/register')
-})
+const main = require('./routes/main')
+const posts = require('./routes/posts')
+app.use('/',main)
+app.use('/posts',posts)
 
 
 app.listen(port, () => {
