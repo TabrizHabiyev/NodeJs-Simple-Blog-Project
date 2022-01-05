@@ -3,12 +3,13 @@ const express = require('express')
 const app = express()
 const exphbs  = require('express-handlebars')
 const bodyParser = require('body-parser')
+const fileUpload = require('express-fileupload')
 
 //Database MongoDB Connection
 const mongoose = require('mongoose')
 mongoose.connect('mongodb+srv://tabriz_habiyev:tabriz_habiyev@cluster0.bpd6t.mongodb.net/MongoDB?retryWrites=true&w=majority');
 
-
+app.use(fileUpload())
 
 const port = 3000
 
