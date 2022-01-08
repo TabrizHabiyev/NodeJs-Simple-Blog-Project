@@ -21,9 +21,14 @@ const post = require('../models/post')
       Post.create({
           ...req.body,
           post_image:`/img/postimages/${photo_name}`
-      })
+      },)
       
-      res.redirect('/')
+      req.session.sessionFlash ={
+        type:'alert alert-success',
+        message: 'Your post has been created successfully'
+      }
+
+      res.redirect('/blog')
     }else{
       res.redirect('/posts/new')
     }

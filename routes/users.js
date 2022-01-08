@@ -12,9 +12,30 @@ const User = require('../models/user')
 
   ///Register
   router.post('/register', (req, res) => {
-    User.create(req.body,(err,user)=>{
-        res.redirect('/')
-    })
+    const email = req.body.email;
+    
+    User.findOne({email},(err,user)=>{
+        if (user) {
+            if (user.email == email) {
+                req.session.sessionFlash ={
+                    type:'alert alert-danger',
+                    message: 'User successfully created . You can login now'
+                  }
+                res.redirect('/users/register')
+            }else{
+                User.create(req.body,(err,user)=>{
+                    req.session.sessionFlash ={
+                        type:'alert alert-success',
+                        message: 'User successfully created . You can login now'
+                      }
+                    res.redirect('/users/login')
+                })
+            }
+        }else{
+                res.redirect('/users/register')
+        }
+     })
+    
   })
 
 

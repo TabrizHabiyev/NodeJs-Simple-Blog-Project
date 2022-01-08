@@ -6,6 +6,12 @@
 					<div class="section-header">
 						<h2 class="title">Login</h2>
 					</div>
+			 {{#if sessionFlash.message}}
+		 	<!-- Notification message -->
+              <div class="{{sessionFlash.type}}">
+				  {{sessionFlash.message}}
+			  </div>
+			{{/if}}
 				</div>
 			</div>
 
