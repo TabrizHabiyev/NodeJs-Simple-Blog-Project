@@ -24,10 +24,25 @@ app.use(expressSession({
 }))
 
 
-// Flash message Midilware
+// Flash message Middleware
 app.use((req,res,next)=>{
   res.locals.sessionFlash = req.session.sessionFlash
   delete req.session.sessionFlash
+  next()
+})
+
+// Display nav link Middleware
+app.use((req,res,next)=>{
+  const {UserId} = req.session
+  if (UserId) {
+          res.locals ={
+          displayLink: true
+    }
+  }else{
+         res.locals ={
+           displayLink: false
+         }
+    }
   next()
 })
 

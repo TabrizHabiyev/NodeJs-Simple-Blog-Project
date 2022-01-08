@@ -20,15 +20,26 @@
 					<li class="nav-item">
 						<a class="nav-link" href="/contact">Contact</a>
 					</li>
-							<li class="nav-item">
+
+					{{#if displayLink}}
+					<li class="nav-item">
 						<a class="nav-link" href="/posts/new">Add Post</a>
 					</li>
+					{{/if}}
+
+                  	{{#unless displayLink}}
 					<li class="nav-item">
 						<a class="nav-link" href="/users/login">Login</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="/users/register">Register</a>
 					</li>
+					{{/unless}}
+					{{#if displayLink}}
+					<li class="nav-item">
+						<a class="nav-link" href="/users/logout">Log Out</a>
+					</li>
+					{{/if}}
 				</ul>
 			</div>
 		</div>

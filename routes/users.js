@@ -62,4 +62,11 @@ const User = require('../models/user')
   })
 
 
+    //Login out
+    router.get('/logout', (req, res) => {
+      req.session.destroy(()=>{
+        res.redirect('/')
+      })
+    })
+
 module.exports = router;
