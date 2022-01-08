@@ -3,9 +3,13 @@ const router = express.Router()
 const Post = require('../models/post')
 const path = require('path')
 const md5 = require('md5')
+const post = require('../models/post')
 
   router.get('/new', (req, res) => {
-    res.render('site/addPost')
+    if (req.session.UserId) {
+     return  res.render('site/addPost')
+    }
+     res.redirect('/users/login')
   })
 
   
@@ -16,7 +20,7 @@ const md5 = require('md5')
       post_image.mv(path.resolve(__dirname,"../www/img/postimages",`${photo_name}`))
       Post.create({
           ...req.body,
-          post_image:`www/img/postimages/${photo_name}`
+          post_image:`/img/postimages/${photo_name}`
       })
       
       res.redirect('/')
@@ -30,6 +34,7 @@ const md5 = require('md5')
     Post.findById(req.params.id).lean().then(post => {
       res.render('site/post' , {post:post})
     })
+    
   })
 
   

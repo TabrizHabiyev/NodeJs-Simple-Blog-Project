@@ -4,6 +4,7 @@ const router = express.Router()
 const Post = require('../models/post')
 
   router.get('/', (req, res) => {
+    console.log(req.session)
     res.render('site/index')
   })
   
@@ -21,12 +22,5 @@ const Post = require('../models/post')
     res.render('site/contact')
   })
   
-  router.get('/login', (req, res) => {
-    res.render('site/login')
-  })
-  
-  router.get('/register', (req, res) => {
-    res.render('site/register')
-  })
   
   module.exports = router;
